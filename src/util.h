@@ -8,7 +8,7 @@
 namespace bignumber
 {
 
-size_t mostSigBitPos(DATA_TYPE x);
+size_t mostSigBitPos(DATA_TYPE x, bool& exists);
 
 std::string elemToBinString(DATA_TYPE x);
 

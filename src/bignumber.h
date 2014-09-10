@@ -15,7 +15,8 @@ class BigNumber
 public:
     enum
     {
-        elem_bits_count = (sizeof(DATA_TYPE) * 8 - 1)
+        elem_bits_count = (sizeof(DATA_TYPE) * 8 - 1),
+        last_bit_num = (sizeof(DATA_TYPE) * 8 - 1)
     };
 
     BigNumber();
@@ -33,6 +34,10 @@ public:
     static BigNumber fromBinString(const std::string& str);
     
     static std::string toBinString(const BigNumber& val);
+
+    BigNumber operator << (size_t bits) const;
+
+    BigNumber operator >> (size_t bits) const;
 
 private:
     std::vector<DATA_TYPE> data;

@@ -3,7 +3,7 @@
 namespace bignumber
 {
 
-size_t mostSigBitPos(DATA_TYPE x)
+size_t mostSigBitPos(DATA_TYPE x, bool& exists)
 {
     size_t pos = sizeof(DATA_TYPE) * 8 - 2;
     bool found = false;
@@ -12,10 +12,15 @@ size_t mostSigBitPos(DATA_TYPE x)
         found = (x & (1 << pos)) != 0;
         if (!found)
         {
+            if (pos == 0)
+            {
+                break;
+            }
             --pos;
         }
     } 
     while (!found);
+    exists = found;
     return pos;
 }
 
