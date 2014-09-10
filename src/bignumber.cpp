@@ -90,8 +90,25 @@ BigNumber BigNumber::fromBinString(const std::string& str)
                 elem |= (DATA_TYPE(1) << indexInElem);
             }
             --bitIndex;
-            static_cast<size_t>(bitIndex / elem_bits_count);
+            elemIndex = static_cast<size_t>(bitIndex / elem_bits_count);
         }
+    }
+    return ret;
+}
+
+std::string BigNumber::toBinString(const BigNumber& val)
+{
+    std::string ret;
+    if (!val.data.empty())
+    {
+        auto i = val.data.rbegin();
+        auto e = val.data.rend();
+        for (; i != e; ++i)
+        {
+            ret += elemToBinString(*i);
+        }
+        auto pos = ret.find_first_of('1');
+        ret = ret.substr(pos);
     }
     return ret;
 }

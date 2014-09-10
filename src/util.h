@@ -3,10 +3,14 @@
 
 #include "decls.h"
 
+#include <string>
+
 namespace bignumber
 {
 
 size_t mostSigBitPos(DATA_TYPE x);
+
+std::string elemToBinString(DATA_TYPE x);
 
 }
 

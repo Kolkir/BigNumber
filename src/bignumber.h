@@ -32,6 +32,8 @@ public:
 
     static BigNumber fromBinString(const std::string& str);
     
+    static std::string toBinString(const BigNumber& val);
+
 private:
     std::vector<DATA_TYPE> data;
 };
