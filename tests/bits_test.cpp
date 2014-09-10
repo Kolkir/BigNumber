@@ -4,7 +4,9 @@
 
 TEST(BitTests, SetGetTest)
 {
-    BigNumber<unsigned char> b;
+    using namespace bignumber;
+
+    BigNumber b;
 
     b.setBit(1);
     ASSERT_EQ(2, b.getBitsCount());
@@ -23,7 +25,9 @@ TEST(BitTests, SetGetTest)
 
 TEST(BitTests, RestToggleTest)
 {
-    BigNumber<unsigned char> b;
+    using namespace bignumber;
+
+    BigNumber b;
     b.resetBit(1);
     ASSERT_FALSE(b.getBit(1));
 
