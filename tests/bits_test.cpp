@@ -79,7 +79,14 @@ TEST(BitTests, ShiftRightTest)
 
     auto b = BigNumber::fromBinString("10100");
 
-    auto r = b << 2;
+    auto r = b >> 2;
+
+    ASSERT_EQ("101", BigNumber::toBinString(r));
+
+    b = BigNumber::fromBinString("1010000000000000000");
+    ASSERT_EQ("1010000000000000000", BigNumber::toBinString(b));
+
+    r = b >> 16;
 
     ASSERT_EQ("101", BigNumber::toBinString(r));
 }
