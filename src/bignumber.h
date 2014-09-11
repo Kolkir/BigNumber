@@ -13,17 +13,20 @@ namespace bignumber
 class BigNumber
 {
 public:
+    //constants
     enum
     {
         elem_bits_count = (sizeof(DATA_TYPE) * 8 - 1),
         last_bit_num = (sizeof(DATA_TYPE) * 8 - 1)
     };
 
+    //construction
     BigNumber();
+    
+    static BigNumber fromBinString(const std::string& str);
 
+    //individual bits
     void setBit(size_t index);
-
-    size_t getBitsCount() const;
 
     bool getBit(size_t index) const;
 
@@ -31,10 +34,13 @@ public:
 
     void toggleBit(size_t index);
 
-    static BigNumber fromBinString(const std::string& str);
-    
-    static std::string toBinString(const BigNumber& val);
+    //bits counting
+    size_t getBitsCount() const;
 
+    //strings representation
+    std::string toBinString() const;
+
+    //shifts
     BigNumber operator << (size_t bits) const;
 
     BigNumber operator >> (size_t bits) const;
