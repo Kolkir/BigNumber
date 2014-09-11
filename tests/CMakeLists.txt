@@ -3,7 +3,9 @@ include_directories("${PROJECT_SOURCE_DIR}/src/")
 
 set(TESTS_SOURCES
     bits_test.cpp
-    string_test.cpp
+    counts_test.cpp
+    strings_test.cpp
+    shifts_test.cpp
     )
 
 source_group(sources FILES ${TESTS_SOURCES})
