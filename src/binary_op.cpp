@@ -91,6 +91,43 @@ Number& Number::operator |= (const Number& rhv)
 
 Number& Number::operator ^= (const Number& rhv)
 {
+    Number res = *this;
+
+    auto aElem = res.data.begin();
+
+    if (rhv.data.back() != 0)
+    {
+        //select bigest number
+        const Number* a = this;
+        const Number* b = &rhv;
+        GetLongestNumber(&a, &b);
+
+        res = *a;
+
+        //do XOR
+        aElem = res.data.begin();
+        for (const auto& bElem : b->data)
+        {
+            (*aElem) ^= bElem;
+            ++aElem;
+        }
+    }
+    
+    //process missed elements
+    auto aEndElem = res.data.end();
+    for (; aElem != aEndElem; ++aElem)
+    {
+        (*aElem) ^= DATA_TYPE(0);
+    }
+
+    //Remove empty elements
+    while (res.data.back() == 0 && res.data.size() > 1)
+    {
+        res.data.erase(std::prev(res.data.end()));
+    }
+
+    *this = res;
+
     return *this;
 }
 

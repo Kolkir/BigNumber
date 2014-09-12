@@ -92,3 +92,40 @@ TEST(BitTests, BinaryOrTest)
 
     ASSERT_EQ("1010010000000000000011", r.toBinString());
 }
+
+TEST(BitTests, BinaryXorTest)
+{
+    using namespace bignumber;
+
+    auto a = Number::fromBinString("101");
+    auto b = Number::fromBinString(  "0");
+
+    auto r = a ^ b;
+
+    ASSERT_EQ("101", r.toBinString());
+
+    a = Number::fromBinString("101");
+    b = Number::fromBinString( "11");
+
+    r = a ^ b;
+
+    ASSERT_EQ("110", r.toBinString());
+
+    a = Number::fromBinString("1010000000000000000011");
+    b = Number::fromBinString(                    "10");
+
+    r = a ^ b;
+
+    ASSERT_EQ("1010000000000000000001", r.toBinString());
+
+    a = Number::fromBinString("1010010000000000000011");
+    b = Number::fromBinString(  "10000000000000000011");
+
+    r = a ^ b;
+
+    ASSERT_EQ("1000010000000000000000", r.toBinString());
+
+    r = b ^ a; //test invert order
+
+    ASSERT_EQ("1000010000000000000000", r.toBinString());
+}
