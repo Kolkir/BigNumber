@@ -40,8 +40,8 @@ public:
     std::string toBinString() const;
 
     //shifts
-    Number operator << (size_t bits) const;
-    Number operator >> (size_t bits) const;
+    Number& operator <<= (size_t bits);
+    Number& operator >>= (size_t bits);
 
     //binary operators
     Number& operator &= (const Number& rhv);
@@ -52,6 +52,10 @@ public:
 private:
     std::vector<DATA_TYPE> data;
 };
+
+Number operator << (const Number& val, size_t bits);
+Number operator >> (const Number& val, size_t bits);
+
 
 Number operator & (const Number& lhv, const Number& rhv);
 Number operator | (const Number& lhv, const Number& rhv);

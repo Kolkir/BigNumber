@@ -7,15 +7,14 @@ namespace bignumber
 
 //shifts ----------------------------------------------------------------------------------------
 
-Number Number::operator << (size_t bits) const
+Number& Number::operator <<= (size_t bits)
 {
-    Number ret = *this;
     if (data.back() != 0)
     {
         for (size_t s = 0 ; s < bits; ++s)
         {
-            auto i = ret.data.begin();
-            auto e = ret.data.end();
+            auto i = data.begin();
+            auto e = data.end();
             bool setFirstBit = false;
             for (; i != e; ++i)
             {
@@ -38,22 +37,21 @@ Number Number::operator << (size_t bits) const
             }
             if (setFirstBit)
             {
-                ret.data.emplace_back(DATA_TYPE(1));
+                data.emplace_back(DATA_TYPE(1));
             }
         }
     }
-    return ret;
+    return *this;
 }
 
-Number Number::operator >> (size_t bits) const
+Number& Number::operator >>= (size_t bits)
 {
-    Number ret = *this;
     if (data.back() != 0)
     {
         for (size_t s = 0 ; s < bits; ++s)
         {
-            auto i = ret.data.begin();
-            auto e = ret.data.end();
+            auto i = data.begin();
+            auto e = data.end();
 
             for (; i != e; ++i)
             {
@@ -70,12 +68,27 @@ Number Number::operator >> (size_t bits) const
             }
 
             //Remove empty elements
-            while (ret.data.back() == 0 && ret.data.size() > 1)
+            while (data.back() == 0 && data.size() > 1)
             {
-                ret.data.erase(std::prev(ret.data.end()));
+                data.erase(std::prev(data.end()));
             }
         }
     }
+    return *this;
+}
+
+
+Number operator << (const Number& val, size_t bits)
+{
+    Number ret = val;
+    ret <<= bits;
+    return ret;
+}
+
+Number operator >> (const Number& val, size_t bits)
+{
+    Number ret = val;
+    ret >>= bits;
     return ret;
 }
 
