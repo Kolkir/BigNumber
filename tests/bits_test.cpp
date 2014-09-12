@@ -1,4 +1,4 @@
-#include "bignumber.h"
+#include "number.h"
 
 #include <gtest/gtest.h>
 
@@ -6,7 +6,7 @@ TEST(BitTests, SetGetTest)
 {
     using namespace bignumber;
 
-    BigNumber b;
+    Number b;
 
     b.setBit(1);
     b.setBit(0);
@@ -22,7 +22,7 @@ TEST(BitTests, RestToggleTest)
 {
     using namespace bignumber;
 
-    BigNumber b;
+    Number b;
     b.resetBit(1);
     ASSERT_FALSE(b.getBit(1));
 

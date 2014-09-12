@@ -1,4 +1,4 @@
-#include "bignumber.h"
+#include "number.h"
 
 #include "util.h"
 
@@ -7,7 +7,7 @@ namespace bignumber
 
 //strings representation ----------------------------------------------------------------------
 
-std::string BigNumber::toBinString() const
+std::string Number::toBinString() const
 {
     std::string ret;
     if (!data.empty())

@@ -6,6 +6,7 @@ set(TESTS_SOURCES
     counts_test.cpp
     strings_test.cpp
     shifts_test.cpp
+    binary_op_test.cpp
     )
 
 source_group(sources FILES ${TESTS_SOURCES})

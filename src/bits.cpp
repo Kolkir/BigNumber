@@ -1,4 +1,4 @@
-#include "bignumber.h"
+#include "number.h"
 
 #include "util.h"
 
@@ -6,7 +6,7 @@ namespace bignumber
 {
 //individual bits ---------------------------------------------------------------------------
 
-void BigNumber::setBit(size_t index)
+void Number::setBit(size_t index)
 {
     size_t elemIndex = static_cast<size_t>(index / elem_bits_count);
     if (elemIndex >= data.size())
@@ -18,7 +18,7 @@ void BigNumber::setBit(size_t index)
     elem |= (DATA_TYPE(1) << indexInElem);
 }
 
-bool BigNumber::getBit(size_t index) const
+bool Number::getBit(size_t index) const
 {
     size_t elemIndex = static_cast<size_t>(index / elem_bits_count);
     if (elemIndex < data.size())
@@ -30,7 +30,7 @@ bool BigNumber::getBit(size_t index) const
     return false;
 }
 
-void BigNumber::resetBit(size_t index)
+void Number::resetBit(size_t index)
 {
     size_t elemIndex = static_cast<size_t>(index / elem_bits_count);
     if (elemIndex < data.size())
@@ -41,7 +41,7 @@ void BigNumber::resetBit(size_t index)
     }
 }
 
-void BigNumber::toggleBit(size_t index)
+void Number::toggleBit(size_t index)
 {
     size_t elemIndex = static_cast<size_t>(index / elem_bits_count);
     if (elemIndex >= data.size())

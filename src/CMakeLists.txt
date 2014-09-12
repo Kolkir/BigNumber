@@ -6,6 +6,7 @@ set(CORE_SOURCES
     ${PROJECT_SOURCE_DIR}/src/counts.cpp
     ${PROJECT_SOURCE_DIR}/src/shifts.cpp
     ${PROJECT_SOURCE_DIR}/src/strings.cpp
+    ${PROJECT_SOURCE_DIR}/src/binary_op.cpp
     ${PROJECT_SOURCE_DIR}/src/util.h
     ${PROJECT_SOURCE_DIR}/src/util.cpp
     )

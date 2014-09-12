@@ -10,7 +10,7 @@
 namespace bignumber
 {
 
-class BigNumber
+class Number
 {
 public:
     //constants
@@ -21,9 +21,9 @@ public:
     };
 
     //construction
-    BigNumber();
+    Number();
 
-    static BigNumber fromBinString(const std::string& str);
+    static Number fromBinString(const std::string& str);
 
     void clear();
 
@@ -40,22 +40,22 @@ public:
     std::string toBinString() const;
 
     //shifts
-    BigNumber operator << (size_t bits) const;
-    BigNumber operator >> (size_t bits) const;
+    Number operator << (size_t bits) const;
+    Number operator >> (size_t bits) const;
 
     //binary operators
-    BigNumber& operator &= (const BigNumber& rhv);
-    BigNumber& operator |= (const BigNumber& rhv);
-    BigNumber& operator ^= (const BigNumber& rhv);
-    BigNumber operator~ () const;
+    Number& operator &= (const Number& rhv);
+    Number& operator |= (const Number& rhv);
+    Number& operator ^= (const Number& rhv);
+    Number operator~ () const;
 
 private:
     std::vector<DATA_TYPE> data;
 };
 
-BigNumber operator & (const BigNumber& lhv, const BigNumber& rhv);
-BigNumber operator | (const BigNumber& lhv, const BigNumber& rhv);
-BigNumber operator ^ (const BigNumber& lhv, const BigNumber& rhv);
+Number operator & (const Number& lhv, const Number& rhv);
+Number operator | (const Number& lhv, const Number& rhv);
+Number operator ^ (const Number& lhv, const Number& rhv);
 
 
 }

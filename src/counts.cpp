@@ -1,4 +1,4 @@
-#include "bignumber.h"
+#include "number.h"
 
 #include "util.h"
 
@@ -7,7 +7,7 @@ namespace bignumber
 
 //bits counting ---------------------------------------------------------------------------
 
-size_t BigNumber::getBitsCount() const
+size_t Number::getBitsCount() const
 {
     size_t ret = data.size() - 1;
     ret *= elem_bits_count;

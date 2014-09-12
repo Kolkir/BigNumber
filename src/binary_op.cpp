@@ -1,4 +1,4 @@
-#include "bignumber.h"
+#include "number.h"
 
 #include "util.h"
 
@@ -6,13 +6,13 @@ namespace bignumber
 {
 //binary operators ---------------------------------------------------------------------------
 
-BigNumber& BigNumber::operator &= (const BigNumber& rhv)
+Number& Number::operator &= (const Number& rhv)
 {
     if (rhv.data.back() != 0)
     {
         //select bigest number
-        const BigNumber* a = nullptr;
-        const BigNumber* b = nullptr;
+        const Number* a = nullptr;
+        const Number* b = nullptr;
         if (getBitsCount() > rhv.getBitsCount())
         {
             a = this;
@@ -25,7 +25,7 @@ BigNumber& BigNumber::operator &= (const BigNumber& rhv)
         }
 
         //do and
-        BigNumber res = *a;
+        Number res = *a;
 
         auto aElem = res.data.begin();
         for (const auto& bElem : b->data)
@@ -56,19 +56,19 @@ BigNumber& BigNumber::operator &= (const BigNumber& rhv)
     return *this;
 }
 
-BigNumber& BigNumber::operator |= (const BigNumber& rhv)
+Number& Number::operator |= (const Number& rhv)
 {
     return *this;
 }
 
-BigNumber& BigNumber::operator ^= (const BigNumber& rhv)
+Number& Number::operator ^= (const Number& rhv)
 {
     return *this;
 }
 
-BigNumber BigNumber::operator~ () const
+Number Number::operator~ () const
 {
-    BigNumber ret = *this;
+    Number ret = *this;
 
     bool msbExist = false;
     auto msbPos = mostSigBitPos(data.back(), msbExist);
@@ -100,21 +100,21 @@ BigNumber BigNumber::operator~ () const
     return ret;
 }
 
-BigNumber operator & (const BigNumber& lhv, const BigNumber& rhv)
+Number operator & (const Number& lhv, const Number& rhv)
 {
     auto ret = lhv;
     ret &= rhv;
     return ret;
 }
 
-BigNumber operator | (const BigNumber& lhv, const BigNumber& rhv)
+Number operator | (const Number& lhv, const Number& rhv)
 {
     auto ret = lhv;
     ret |= rhv;
     return ret;
 }
 
-BigNumber operator ^ (const BigNumber& lhv, const BigNumber& rhv)
+Number operator ^ (const Number& lhv, const Number& rhv)
 {
     auto ret = lhv;
     ret ^= rhv;

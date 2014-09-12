@@ -1,4 +1,4 @@
-#include "bignumber.h"
+#include "number.h"
 
 #include <gtest/gtest.h>
 
@@ -6,7 +6,7 @@ TEST(BitTests, BitCountTest)
 {
     using namespace bignumber;
 
-    BigNumber b;
+    Number b;
 
     ASSERT_EQ(0, b.getBitsCount());
 

@@ -1,4 +1,4 @@
-#include "bignumber.h"
+#include "number.h"
 
 #include "util.h"
 
@@ -7,9 +7,9 @@ namespace bignumber
 
 //shifts ----------------------------------------------------------------------------------------
 
-BigNumber BigNumber::operator << (size_t bits) const
+Number Number::operator << (size_t bits) const
 {
-    BigNumber ret = *this;
+    Number ret = *this;
     if (data.back() != 0)
     {
         for (size_t s = 0 ; s < bits; ++s)
@@ -45,9 +45,9 @@ BigNumber BigNumber::operator << (size_t bits) const
     return ret;
 }
 
-BigNumber BigNumber::operator >> (size_t bits) const
+Number Number::operator >> (size_t bits) const
 {
-    BigNumber ret = *this;
+    Number ret = *this;
     if (data.back() != 0)
     {
         for (size_t s = 0 ; s < bits; ++s)
