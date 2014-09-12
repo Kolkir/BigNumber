@@ -49,6 +49,10 @@ public:
     Number& operator ^= (const Number& rhv);
     Number operator~ () const;
 
+    //comparison operators
+    bool equals(const Number& rhv) const;
+    bool less(const Number& rhv) const;
+
 private:
     std::vector<DATA_TYPE> data;
 };
@@ -56,11 +60,16 @@ private:
 Number operator << (const Number& val, size_t bits);
 Number operator >> (const Number& val, size_t bits);
 
-
 Number operator & (const Number& lhv, const Number& rhv);
 Number operator | (const Number& lhv, const Number& rhv);
 Number operator ^ (const Number& lhv, const Number& rhv);
 
+bool operator == (const Number& lhv, const Number& rhv);
+bool operator != (const Number& lhv, const Number& rhv);
+bool operator <  (const Number& lhv, const Number& rhv);
+bool operator >  (const Number& lhv, const Number& rhv);
+bool operator >= (const Number& lhv, const Number& rhv);
+bool operator <= (const Number& lhv, const Number& rhv);
 
 }
 #endif

@@ -128,4 +128,10 @@ TEST(BitTests, BinaryXorTest)
     r = b ^ a; //test invert order
 
     ASSERT_EQ("1000010000000000000000", r.toBinString());
+
+    a = Number::fromBinString("10001011011001111000001"); //4568001
+    b = Number::fromBinString("10001011010111111011001"); //4567001
+
+    r = a ^ b;
+    ASSERT_EQ("1110000011000", r.toBinString());
 }
