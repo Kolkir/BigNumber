@@ -10,9 +10,7 @@ namespace bignumber
 BigNumber BigNumber::operator << (size_t bits) const
 {
     BigNumber ret = *this;
-    auto msbExist = false;
-    mostSigBitPos(data.back(), msbExist);
-    if (msbExist)
+    if (data.back() != 0)
     {
         for (size_t s = 0 ; s < bits; ++s)
         {
@@ -50,9 +48,7 @@ BigNumber BigNumber::operator << (size_t bits) const
 BigNumber BigNumber::operator >> (size_t bits) const
 {
     BigNumber ret = *this;
-    auto msbExist = false;
-    mostSigBitPos(data.back(), msbExist);
-    if (msbExist)
+    if (data.back() != 0)
     {
         for (size_t s = 0 ; s < bits; ++s)
         {
@@ -71,6 +67,12 @@ BigNumber BigNumber::operator >> (size_t bits) const
                         (*i) |= DATA_TYPE(1) << (last_bit_num - 1);
                     }
                 }
+            }
+
+            //Remove empty elements
+            while (ret.data.back() == 0 && ret.data.size() > 1)
+            {
+                ret.data.erase(std::prev(ret.data.end()));
             }
         }
     }

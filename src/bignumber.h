@@ -22,16 +22,13 @@ public:
 
     //construction
     BigNumber();
-    
+
     static BigNumber fromBinString(const std::string& str);
 
     //individual bits
     void setBit(size_t index);
-
     bool getBit(size_t index) const;
-
     void resetBit(size_t index);
-
     void toggleBit(size_t index);
 
     //bits counting
@@ -42,12 +39,22 @@ public:
 
     //shifts
     BigNumber operator << (size_t bits) const;
-
     BigNumber operator >> (size_t bits) const;
+
+    //binary operators
+    BigNumber& operator &= (const BigNumber& rhv);
+    BigNumber& operator |= (const BigNumber& rhv);
+    BigNumber& operator ^= (const BigNumber& rhv);
+    BigNumber operator~ () const;
 
 private:
     std::vector<DATA_TYPE> data;
 };
+
+BigNumber operator & (const BigNumber& lhv, const BigNumber& rhv);
+BigNumber operator | (const BigNumber& lhv, const BigNumber& rhv);
+BigNumber operator ^ (const BigNumber& lhv, const BigNumber& rhv);
+
 
 }
 #endif

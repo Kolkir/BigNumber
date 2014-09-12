@@ -19,7 +19,14 @@ std::string BigNumber::toBinString() const
             ret += elemToBinString(*i);
         }
         auto pos = ret.find_first_of('1');
-        ret = ret.substr(pos);
+        if (pos != std::string::npos)
+        {
+            ret = ret.substr(pos);
+        }
+        else
+        {
+            ret = "0";
+        }
     }
     return ret;
 }

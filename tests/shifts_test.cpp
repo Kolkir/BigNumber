@@ -33,4 +33,10 @@ TEST(BitTests, ShiftRightTest)
     r = b >> 16;
 
     ASSERT_EQ("101", r.toBinString());
+
+    b = BigNumber::fromBinString("1010000000000000000");
+
+    r = b >> 32;
+
+    ASSERT_EQ("0", r.toBinString());
 }
