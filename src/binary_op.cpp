@@ -4,6 +4,24 @@
 
 namespace bignumber
 {
+
+namespace
+{
+
+void GetLongestNumber(const Number** a, const Number** b)
+{
+    if ((*a)->getBitsCount() > (*b)->getBitsCount())
+    {
+        // ok
+    }
+    else
+    {
+        std::swap((*a), (*b));
+    }
+}
+
+}
+
 //binary operators ---------------------------------------------------------------------------
 
 Number& Number::operator &= (const Number& rhv)
@@ -11,20 +29,11 @@ Number& Number::operator &= (const Number& rhv)
     if (rhv.data.back() != 0)
     {
         //select bigest number
-        const Number* a = nullptr;
-        const Number* b = nullptr;
-        if (getBitsCount() > rhv.getBitsCount())
-        {
-            a = this;
-            b = &rhv;
-        }
-        else
-        {
-            b = this;
-            a = &rhv;
-        }
+        const Number* a = this;
+        const Number* b = &rhv;
+        GetLongestNumber(&a, &b);
 
-        //do and
+        //do AND
         Number res = *a;
 
         auto aElem = res.data.begin();
@@ -58,6 +67,25 @@ Number& Number::operator &= (const Number& rhv)
 
 Number& Number::operator |= (const Number& rhv)
 {
+    if (rhv.data.back() != 0)
+    {
+        //select bigest number
+        const Number* a = this;
+        const Number* b = &rhv;
+        GetLongestNumber(&a, &b);
+
+        //do OR
+        Number res = *a;
+
+        auto aElem = res.data.begin();
+        for (const auto& bElem : b->data)
+        {
+            (*aElem) |= bElem;
+            ++aElem;
+        }
+
+        *this = res;
+    }
     return *this;
 }
 
