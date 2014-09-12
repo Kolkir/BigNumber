@@ -12,9 +12,9 @@ Now supports:
 - Initialization **from string**: binary number string
 - Converting **to string**: binary number string
 - **Binary operations**: ~, &, |, ^, &=, |=, ^=
+- **Comparison opeartions**: <, >, <=, >=, ==, !=
 
 Planned:
-- Comparison opeartions: <, >, <=, >=, ==, !=
 - Arithmetic opeartions: +, -, *, /, %, +=, -=, *=, /=, %=
 - Shift operations: <<=, >>=
 - Increment operations(post and pre): ++, --
