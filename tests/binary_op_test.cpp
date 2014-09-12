@@ -24,9 +24,30 @@ TEST(BitTests, BinaryAndTest)
     using namespace bignumber;
 
     auto a = BigNumber::fromBinString("101");
-    auto b = BigNumber::fromBinString("11");
+    auto b = BigNumber::fromBinString("0");
 
     auto r = a & b;
 
+    ASSERT_EQ("0", r.toBinString());
+
+    a = BigNumber::fromBinString("101");
+    b = BigNumber::fromBinString("11");
+
+    r = a & b;
+
     ASSERT_EQ("1", r.toBinString());
+
+    a = BigNumber::fromBinString("1010000000000000000011");
+    b = BigNumber::fromBinString("10");
+
+    r = a & b;
+
+    ASSERT_EQ("10", r.toBinString());
+
+    a = BigNumber::fromBinString("1010010000000000000011");
+    b = BigNumber::fromBinString("10000000000000000011");
+
+    r = a & b;
+
+    ASSERT_EQ("10000000000000000011", r.toBinString());
 }

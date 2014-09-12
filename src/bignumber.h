@@ -25,6 +25,8 @@ public:
 
     static BigNumber fromBinString(const std::string& str);
 
+    void clear();
+
     //individual bits
     void setBit(size_t index);
     bool getBit(size_t index) const;

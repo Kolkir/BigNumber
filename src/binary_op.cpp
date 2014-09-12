@@ -8,6 +8,51 @@ namespace bignumber
 
 BigNumber& BigNumber::operator &= (const BigNumber& rhv)
 {
+    if (rhv.data.back() != 0)
+    {
+        //select bigest number
+        const BigNumber* a = nullptr;
+        const BigNumber* b = nullptr;
+        if (getBitsCount() > rhv.getBitsCount())
+        {
+            a = this;
+            b = &rhv;
+        }
+        else
+        {
+            b = this;
+            a = &rhv;
+        }
+
+        //do and
+        BigNumber res = *a;
+
+        auto aElem = res.data.begin();
+        for (const auto& bElem : b->data)
+        {
+            (*aElem) &= bElem;
+            ++aElem;
+        }
+
+        //clear missed elements
+        auto aEndElem = res.data.end();
+        for (; aElem != aEndElem; ++aElem)
+        {
+            (*aElem) = 0;
+        }
+
+        //Remove empty elements
+        while (res.data.back() == 0 && res.data.size() > 1)
+        {
+            res.data.erase(std::prev(res.data.end()));
+        }
+
+        *this = res;
+    }
+    else
+    {
+        clear();
+    }
     return *this;
 }
 

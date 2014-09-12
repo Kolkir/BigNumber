@@ -17,30 +17,43 @@ BigNumber BigNumber::fromBinString(const std::string& str)
 {
     auto msb = str.find_first_not_of('0');
 
-    auto start = str.begin();
-    std::advance(start, msb);
-    auto end = str.end();
-    auto len = std::distance(start, end);
-
-    BigNumber ret;
-    if (len > 0)
+    if (msb != std::string::npos)
     {
-        ret.data.resize(len / elem_bits_count + 1);
-        size_t elemIndex = ret.data.size() - 1;
-        size_t bitIndex = len - 1;
-        for (auto i = start; i != end; ++i)
+        auto start = str.begin();
+        std::advance(start, msb);
+        auto end = str.end();
+        auto len = std::distance(start, end);
+
+        BigNumber ret;
+        if (len > 0)
         {
-            if (*i != '0')
+            ret.data.resize(len / elem_bits_count + 1);
+            size_t elemIndex = ret.data.size() - 1;
+            size_t bitIndex = len - 1;
+            for (auto i = start; i != end; ++i)
             {
-                auto& elem = ret.data[elemIndex];
-                auto indexInElem = bitIndex - (elemIndex * elem_bits_count);
-                elem |= (DATA_TYPE(1) << indexInElem);
+                if (*i != '0')
+                {
+                    auto& elem = ret.data[elemIndex];
+                    auto indexInElem = bitIndex - (elemIndex * elem_bits_count);
+                    elem |= (DATA_TYPE(1) << indexInElem);
+                }
+                --bitIndex;
+                elemIndex = static_cast<size_t>(bitIndex / elem_bits_count);
             }
-            --bitIndex;
-            elemIndex = static_cast<size_t>(bitIndex / elem_bits_count);
         }
+        return ret;
     }
-    return ret;
+    else
+    {
+        return BigNumber();
+    }
+}
+
+void BigNumber::clear()
+{
+    data.resize(1, 0);
+    data.back() = 0;
 }
 
 }
