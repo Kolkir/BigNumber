@@ -25,6 +25,8 @@ public:
 
     static Number fromBinString(const std::string& str);
 
+    static Number fromDecString(const std::string& str);
+
     void clear();
 
     //individual bits

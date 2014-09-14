@@ -38,3 +38,17 @@ TEST(BitTests, ToBinStringTest)
 
 }
 
+TEST(BitTests, FromDecStringTest)
+{
+    using namespace bignumber;
+
+    auto b = Number::fromDecString("5");
+    ASSERT_TRUE(b.getBit(0));
+    ASSERT_FALSE(b.getBit(1));
+    ASSERT_TRUE(b.getBit(2));
+
+    auto b2 = Number::fromDecString("4587864");
+
+    ASSERT_EQ("10001100000000101011000", b2.toBinString());
+}
+

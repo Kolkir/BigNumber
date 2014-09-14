@@ -56,4 +56,24 @@ void Number::clear()
     data.back() = 0;
 }
 
+Number Number::fromDecString(const std::string& str)
+{
+    auto num= str;
+    std::string stack;
+
+    while (num != "0")
+    {
+        if (isOdd(num.back()))
+        {
+            stack += '1';
+        }
+        else
+        {
+            stack += '0';
+        }
+        num = divByTwo(num);
+    }
+    return Number::fromBinString(stack);
+}
+
 }
