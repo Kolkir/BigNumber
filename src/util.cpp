@@ -88,7 +88,7 @@ std::string divByTwo(const std::string& num)
         {
             next_add = 0;
         }
-        auto newCh = decToChar(charToDec(ch) / 2 + add);
+        auto newCh = decToChar((charToDec(ch) >> 1) + add);
         ret += newCh;
     }
     //remove leading zeros

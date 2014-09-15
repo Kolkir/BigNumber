@@ -47,8 +47,10 @@ TEST(BitTests, FromDecStringTest)
     ASSERT_FALSE(b.getBit(1));
     ASSERT_TRUE(b.getBit(2));
 
-    auto b2 = Number::fromDecString("4587864");
+    ASSERT_EQ("101", b.toBinString());
 
-    ASSERT_EQ("10001100000000101011000", b2.toBinString());
+    b = Number::fromDecString("4587864");
+
+    ASSERT_EQ("10001100000000101011000", b.toBinString());
 }
 

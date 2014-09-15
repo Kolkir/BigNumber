@@ -59,21 +59,22 @@ void Number::clear()
 Number Number::fromDecString(const std::string& str)
 {
     auto num= str;
-    std::string stack;
+    std::string ret;
 
     while (num != "0")
     {
         if (isOdd(num.back()))
         {
-            stack += '1';
+            ret += '1';
         }
         else
         {
-            stack += '0';
+            ret += '0';
         }
         num = divByTwo(num);
     }
-    return Number::fromBinString(stack);
+    std::reverse(ret.begin(), ret.end());
+    return Number::fromBinString(ret);
 }
 
 }
