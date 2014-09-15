@@ -8,6 +8,7 @@ set(CORE_SOURCES
     ${PROJECT_SOURCE_DIR}/src/strings.cpp
     ${PROJECT_SOURCE_DIR}/src/binary.cpp
     ${PROJECT_SOURCE_DIR}/src/compare.cpp
+    ${PROJECT_SOURCE_DIR}/src/arithmetic.cpp
     ${PROJECT_SOURCE_DIR}/src/util.h
     ${PROJECT_SOURCE_DIR}/src/util.cpp
     )

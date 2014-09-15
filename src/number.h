@@ -56,6 +56,9 @@ public:
     bool equals(const Number& rhv) const;
     bool less(const Number& rhv) const;
 
+    //arithmetics
+    Number& operator += (const Number& rhv);
+
 private:
     std::vector<DATA_TYPE> data;
 };
@@ -74,5 +77,6 @@ bool operator >  (const Number& lhv, const Number& rhv);
 bool operator >= (const Number& lhv, const Number& rhv);
 bool operator <= (const Number& lhv, const Number& rhv);
 
+Number operator + (const Number& lhv, const Number& rhv);
 }
 #endif

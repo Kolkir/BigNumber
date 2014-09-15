@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(BitTests, ShiftLeftTest)
+TEST(ShiftTests, Left)
 {
     using namespace bignumber;
 
@@ -17,7 +17,7 @@ TEST(BitTests, ShiftLeftTest)
     ASSERT_EQ("101000000000000000000", r.toBinString());
 }
 
-TEST(BitTests, ShiftRightTest)
+TEST(ShiftTests, Right)
 {
     using namespace bignumber;
 

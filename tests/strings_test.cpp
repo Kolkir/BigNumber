@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(BitTests, FromBinStringTest)
+TEST(StringsTests, FromBinString)
 {
     using namespace bignumber;
 
@@ -21,7 +21,7 @@ TEST(BitTests, FromBinStringTest)
     ASSERT_TRUE(b2.getBit(b2.getBitsCount() - 1));
 }
 
-TEST(BitTests, ToBinStringTest)
+TEST(StringsTests, ToBinString)
 {
     using namespace bignumber;
 
@@ -40,7 +40,7 @@ TEST(BitTests, ToBinStringTest)
 
 }
 
-TEST(BitTests, FromDecStringTest)
+TEST(StringsTests, FromDecString)
 {
     using namespace bignumber;
 
@@ -56,7 +56,7 @@ TEST(BitTests, FromDecStringTest)
     ASSERT_EQ("10001100000000101011000", b.toBinString());
 }
 
-TEST(BitTests, AddDecStringTest)
+TEST(StringsTests, AddDecStrings)
 {
     std::string a("1456");
     std::string b("1000");
@@ -104,7 +104,7 @@ TEST(BitTests, AddDecStringTest)
 
 }
 
-TEST(BitTests, ToDecStringTest)
+TEST(StringsTests, ToDecStrings)
 {
     using namespace bignumber;
 

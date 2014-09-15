@@ -5,23 +5,6 @@
 namespace bignumber
 {
 
-namespace
-{
-
-void GetLongestNumber(const Number** a, const Number** b)
-{
-    if ((*a)->getBitsCount() > (*b)->getBitsCount())
-    {
-        // ok
-    }
-    else
-    {
-        std::swap((*a), (*b));
-    }
-}
-
-}
-
 //binary operators ---------------------------------------------------------------------------
 
 Number& Number::operator &= (const Number& rhv)

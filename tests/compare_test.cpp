@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(BitTests, CmpEqualTest)
+TEST(CompareTests, Equal)
 {
     using namespace bignumber;
 
@@ -35,7 +35,7 @@ TEST(BitTests, CmpEqualTest)
     ASSERT_TRUE(a != b);
 }
 
-TEST(BitTests, CmpLessTest)
+TEST(CompareTests, Less)
 {
     using namespace bignumber;
 
@@ -61,7 +61,7 @@ TEST(BitTests, CmpLessTest)
     ASSERT_TRUE(b < a);
 }
 
-TEST(BitTests, CmpLessEqualTest)
+TEST(CompareTests,LessEqual)
 {
     using namespace bignumber;
 
@@ -80,7 +80,7 @@ TEST(BitTests, CmpLessEqualTest)
     ASSERT_TRUE(b <= a);
 }
 
-TEST(BitTests, CmpGreaterTest)
+TEST(CompareTests, Greater)
 {
     using namespace bignumber;
 
@@ -106,7 +106,7 @@ TEST(BitTests, CmpGreaterTest)
     ASSERT_TRUE(a > b);
 }
 
-TEST(BitTests, CmpGreaterEqualTest)
+TEST(CompareTests, GreaterEqual)
 {
     using namespace bignumber;
 

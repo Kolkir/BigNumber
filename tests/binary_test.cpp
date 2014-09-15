@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(BitTests, BinaryNotTest)
+TEST(BinaryTests, Not)
 {
     using namespace bignumber;
 
@@ -19,7 +19,7 @@ TEST(BitTests, BinaryNotTest)
     ASSERT_EQ("0", r.toBinString());
 }
 
-TEST(BitTests, BinaryAndTest)
+TEST(BinaryTests, And)
 {
     using namespace bignumber;
 
@@ -56,7 +56,7 @@ TEST(BitTests, BinaryAndTest)
     ASSERT_EQ("10000000000000000011", r.toBinString());
 }
 
-TEST(BitTests, BinaryOrTest)
+TEST(BinaryTests, Or)
 {
     using namespace bignumber;
 
@@ -93,7 +93,7 @@ TEST(BitTests, BinaryOrTest)
     ASSERT_EQ("1010010000000000000011", r.toBinString());
 }
 
-TEST(BitTests, BinaryXorTest)
+TEST(BinaryTests, Xor)
 {
     using namespace bignumber;
 

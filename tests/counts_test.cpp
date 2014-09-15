@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(BitTests, BitCountTest)
+TEST(CountsTests, TotalBitsCount)
 {
     using namespace bignumber;
 

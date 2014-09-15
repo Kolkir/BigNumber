@@ -9,6 +9,8 @@
 namespace bignumber
 {
 
+class Number;
+
 size_t mostSigBitPos(DATA_TYPE x, bool& exists);
 
 void leftBitsWalk(DATA_TYPE x, std::function<void (bool)> func);
@@ -21,6 +23,8 @@ bool isOdd(char num);
 std::string divByTwo(const std::string& num);
 
 std::string addTwoDec(const std::string& a, const std::string& b);
+
+void GetLongestNumber(const Number** a, const Number** b);
 
 }
 

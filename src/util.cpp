@@ -1,5 +1,7 @@
 #include "util.h"
 
+#include "number.h"
+
 #include <cstdlib>
 
 namespace bignumber
@@ -192,6 +194,18 @@ std::string addTwoDec(const std::string& a, const std::string& b)
     else
     {
         return addTwoDecImpl(b, a);
+    }
+}
+
+void GetLongestNumber(const Number** a, const Number** b)
+{
+    if ((*a)->getBitsCount() > (*b)->getBitsCount())
+    {
+        // ok
+    }
+    else
+    {
+        std::swap((*a), (*b));
     }
 }
 
