@@ -1,5 +1,7 @@
 #include "number.h"
 
+#include "util.h"
+
 #include <gtest/gtest.h>
 
 TEST(BitTests, FromBinStringTest)
@@ -54,3 +56,77 @@ TEST(BitTests, FromDecStringTest)
     ASSERT_EQ("10001100000000101011000", b.toBinString());
 }
 
+TEST(BitTests, AddDecStringTest)
+{
+    std::string a("1456");
+    std::string b("1000");
+
+    auto r = bignumber::addTwoDec(a,b);
+
+    ASSERT_EQ("2456", r);
+
+    a = "15";
+    b = "6";
+
+    r = bignumber::addTwoDec(a,b);
+
+    ASSERT_EQ("21", r);
+
+    a = "6";
+    b = "15";
+
+    r = bignumber::addTwoDec(a,b);
+
+    ASSERT_EQ("21", r);
+
+    a = "6";
+    b = "5";
+
+    r = bignumber::addTwoDec(a,b);
+
+    ASSERT_EQ("11", r);
+
+
+    a = "4585329";
+    b = "25478632145";
+
+    r = bignumber::addTwoDec(a,b);
+
+    ASSERT_EQ("25483217474", r);
+
+
+    a = "99999999999";
+    b = "99999999999";
+
+    r = bignumber::addTwoDec(a,b);
+
+    ASSERT_EQ("199999999998", r);
+
+}
+
+TEST(BitTests, ToDecStringTest)
+{
+    using namespace bignumber;
+
+    auto b = Number::fromDecString("5");
+
+    ASSERT_EQ("5", b.toDecString());
+
+    b = Number::fromDecString("9");
+
+    ASSERT_EQ("9", b.toDecString());
+
+    b = Number::fromDecString("15");
+
+    ASSERT_EQ("15", b.toDecString());
+
+    b = Number::fromDecString("546457");
+
+    ASSERT_EQ("10000101011010011001", b.toBinString());
+    ASSERT_EQ("546457", b.toDecString());
+
+    b = Number::fromDecString("25483217474");
+
+    ASSERT_EQ("10111101110111010110000101001000010", b.toBinString());
+    ASSERT_EQ("25483217474", b.toDecString());
+}

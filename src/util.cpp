@@ -1,5 +1,7 @@
 #include "util.h"
 
+#include <cstdlib>
+
 namespace bignumber
 {
 
@@ -24,16 +26,39 @@ size_t mostSigBitPos(DATA_TYPE x, bool& exists)
     return pos;
 }
 
-std::string elemToBinString(DATA_TYPE x)
+void leftBitsWalk(DATA_TYPE x, std::function<void(bool)> func)
 {
-    std::string ret;
     size_t bitsCount = sizeof(DATA_TYPE) * 8;
     size_t pos = bitsCount - 2;
     bool found = false;
     for (size_t i = 0; i < bitsCount - 1; ++i)
     {
         found = (x & (1 << pos)) != 0;
-        if (found)
+        func(found);
+        --pos;
+    } 
+}
+
+void rightBitsWalk(DATA_TYPE x, std::function<void(bool)> func)
+{
+    size_t bitsCount = sizeof(DATA_TYPE) * 8;
+    size_t pos = 0;
+    bool found = false;
+    for (size_t i = 0; i < bitsCount - 1; ++i)
+    {
+        found = (x & (1 << pos)) != 0;
+        func(found);
+        ++pos;
+    } 
+}
+
+std::string elemToBinString(DATA_TYPE x)
+{
+    std::string ret;
+    leftBitsWalk(x, 
+        [&ret](bool bit)
+    {
+        if (bit)
         {
             ret += '1';
         }
@@ -41,8 +66,7 @@ std::string elemToBinString(DATA_TYPE x)
         {
             ret += '0';
         }
-        --pos;
-    } 
+    });
 
     return ret;
 }
@@ -98,6 +122,77 @@ std::string divByTwo(const std::string& num)
         return ret.substr(pos);
     }
     return ret;
+}
+
+std::string addTwoDecImpl(const std::string& a, const std::string& b)
+{
+    std::string addres = a;
+    std::reverse(addres.begin(), addres.end());
+
+    char carry = 0;
+    long long i = static_cast<long long>(b.length()) - 1;
+    size_t j = 0;
+    
+    for (; i >= 0; --i, ++j)
+    {
+        char add = charToDec(addres[j]) + charToDec(b[static_cast<size_t>(i)]) + carry;
+        auto res = std::div(add, 10);
+        if (res.quot > 0)
+        {
+            addres[j] = decToChar(static_cast<char>(res.rem));
+            carry = 1;
+        }
+        else
+        {
+            addres[j] = decToChar(add);
+            carry = 0;
+        }
+    }
+
+    if (carry > 0 &&
+        j >= addres.size())
+    {
+        addres.push_back('0');
+    }
+
+    while (carry > 0)
+    {
+        char add = charToDec(addres[j]) + carry;
+        auto res = std::div(add , 10);
+        if (res.quot > 0)
+        {
+            addres[j] = decToChar(static_cast<char>(res.rem));
+            carry = 1;
+        }
+        else
+        {
+            addres[j] = decToChar(add);
+            carry = 0;
+        }
+        if (carry > 0)
+        {
+            j += 1;
+            if (j >= addres.size())
+            {
+                addres.push_back('0');
+            }
+        }
+    }
+
+    std::reverse(addres.begin(), addres.end());
+    return addres;
+}
+
+std::string addTwoDec(const std::string& a, const std::string& b)
+{
+    if (a.size() > b.size())
+    {
+        return addTwoDecImpl(a, b);
+    }
+    else
+    {
+        return addTwoDecImpl(b, a);
+    }
 }
 
 }

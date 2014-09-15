@@ -40,6 +40,7 @@ public:
 
     //strings representation
     std::string toBinString() const;
+    std::string toDecString() const;
 
     //shifts
     Number& operator <<= (size_t bits);

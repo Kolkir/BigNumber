@@ -27,7 +27,15 @@ Number Number::fromBinString(const std::string& str)
         Number ret;
         if (len > 0)
         {
-            ret.data.resize(len / elem_bits_count + 1);
+            auto newLen = len / elem_bits_count;
+
+            if (len % elem_bits_count != 0)
+            {
+               newLen += 1;
+            }
+
+            ret.data.resize(newLen);
+
             size_t elemIndex = ret.data.size() - 1;
             size_t bitIndex = len - 1;
             for (auto i = start; i != end; ++i)
@@ -74,6 +82,13 @@ Number Number::fromDecString(const std::string& str)
         num = divByTwo(num);
     }
     std::reverse(ret.begin(), ret.end());
+
+    auto msb = ret.find_first_not_of('0');
+    if (msb != std::string::npos)
+    {
+        ret = ret.substr(msb);
+    }
+
     return Number::fromBinString(ret);
 }
 
