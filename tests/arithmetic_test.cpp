@@ -40,4 +40,11 @@ TEST(ArithmeticTests, Add)
     r = a + b;
 
     ASSERT_EQ("199999999999998", r.toDecString());
+
+    a = Number::fromDecString("9");
+    b = Number::fromDecString("99999999999999");
+
+    r = a + b;
+
+    ASSERT_EQ("100000000000008", r.toDecString());
 }

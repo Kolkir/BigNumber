@@ -24,7 +24,7 @@ Number& Number::operator += (const Number& rhv)
         res = *a;
 
         //do ADD
-        res.data.push_back(0);
+        res.data.push_back(0); //reserv element
         std::vector<DATA_TYPE> carries1(res.data.size());
         std::vector<DATA_TYPE> carries2(res.data.size());
 
@@ -35,7 +35,8 @@ Number& Number::operator += (const Number& rhv)
         bool carriesExists = false;
         do
         {
-            size_t carryElemIndex = 0;
+            carriesExists = false;
+            auto carry = pCarries->begin();
             for (const auto& bElem : *pData)
             {
                 (*aElem) += bElem;
@@ -46,26 +47,30 @@ Number& Number::operator += (const Number& rhv)
                     //reset overload bit
                     (*aElem) ^= (DATA_TYPE(1) << last_bit_num);
                     //set carry bit
-                    (*pCarries)[carryElemIndex + 1] = 1;
+                    *std::next(carry) = 1;
+                    carriesExists = true;
                 }
+                else if (std::next(carry) != pCarries->end())
+                {
+                    //reset carry bit
+                    *std::next(carry) = 0;
+                }
+
                 ++aElem;
-                ++carryElemIndex;
+                ++carry;
             }
 
-            carriesExists = (std::find(pCarries->begin(), pCarries->end(), 1) != pCarries->end());
             if (carriesExists)
             {
                 if (pCarries == &carries1)
                 {
                     pData = &carries1;
                     pCarries = &carries2;
-                    std::fill(carries2.begin(), carries2.end(), 0);
                 }
                 else
                 {
                     pData = &carries2;
                     pCarries = &carries1;
-                    std::fill(carries1.begin(), carries1.end(), 0);
                 }
 
                 aElem = res.data.begin();
@@ -73,6 +78,7 @@ Number& Number::operator += (const Number& rhv)
         }
         while (carriesExists);
     }
+    //clear reserved elements
     if (res.data.back() == 0)
     {
         res.data.resize(res.data.size() - 1);
