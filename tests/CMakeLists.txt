@@ -9,6 +9,7 @@ set(TESTS_SOURCES
     binary_test.cpp
     compare_test.cpp
     arithmetic_test.cpp
+    increments_test.cpp
     )
 
 source_group(sources FILES ${TESTS_SOURCES})

@@ -61,6 +61,12 @@ public:
     Number& operator += (const Number& rhv);
     Number& operator -= (const Number& rhv);
 
+    //increments
+    Number& operator++();       // Prefix
+    Number operator++(int);     // Postfix
+    Number& operator--();       // Prefix
+    Number operator--(int);     // Postfix
+
 private:
     std::vector<DATA_TYPE> data;
 };
