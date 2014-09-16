@@ -24,7 +24,7 @@ Number& Number::operator += (const Number& rhv)
 
         res = *a;
 
-        //do ADD
+        //do Plus
         res.data.push_back(0); //reserv element
         std::vector<DATA_TYPE> carries1(res.data.size());
         std::vector<DATA_TYPE> carries2(res.data.size());
@@ -98,7 +98,67 @@ Number& Number::operator -= (const Number& rhv)
     }
     else
     {
+        Number res = *this;
 
+        auto aElem = res.data.begin();
+
+        if (data.back() != 0 && rhv.data.back() != 0)
+        {
+            //do Minus
+            std::vector<DATA_TYPE> carries1(res.data.size());
+            std::vector<DATA_TYPE> carries2(res.data.size());
+
+            std::vector<DATA_TYPE>* pCarries = &carries1;
+            const std::vector<DATA_TYPE>* pData = &rhv.data;
+
+            aElem = res.data.begin();
+            bool carriesExists = false;
+            do
+            {
+                carriesExists = false;
+                auto carry = pCarries->begin();
+                for (const auto& bElem : *pData)
+                {
+                    (*aElem) -= bElem;
+
+                    //check overload
+                    if (((*aElem) & (DATA_TYPE(1) << last_bit_num)) != 0)
+                    {
+                        //reset overload bit
+                        (*aElem) ^= (DATA_TYPE(1) << last_bit_num);
+                        *std::next(carry) = 1;
+                        carriesExists = true;
+                    }
+                    else if (std::next(carry) != pCarries->end())
+                    {
+                        //reset carry bit
+                        *std::next(carry) = 0;
+                    }
+
+                    ++aElem;
+                    ++carry;
+                }
+
+                if (carriesExists)
+                {
+                    if (pCarries == &carries1)
+                    {
+                        pData = &carries1;
+                        pCarries = &carries2;
+                    }
+                    else
+                    {
+                        pData = &carries2;
+                        pCarries = &carries1;
+                    }
+
+                    aElem = res.data.begin();
+                }
+            }
+            while (carriesExists);
+        }
+
+        *this = res;
     }
     return *this;
 }

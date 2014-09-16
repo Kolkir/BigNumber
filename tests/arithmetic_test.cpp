@@ -71,4 +71,31 @@ TEST(ArithmeticTests, Minus)
     auto r = a - b;
 
     ASSERT_EQ("5", r.toDecString());
+
+    a = Number::fromDecString("60495262884570");
+    b = Number::fromDecString("779213458");
+
+    r = a - b;
+
+    ASSERT_EQ("60494483671112", r.toDecString());
+
+
+    a = Number::fromDecString("99999999999999");
+    b = Number::fromDecString("999999");
+
+    r = a - b;
+
+    ASSERT_EQ("99999999000000", r.toDecString());
+
+    a = Number::fromDecString("99999999999999");
+    b = Number::fromDecString("99999999999999");
+
+    r = a - b;
+
+    ASSERT_EQ("0", r.toDecString());
+
+    a = Number::fromDecString("999999999999");
+    b = Number::fromDecString("99999999999999");
+
+    ASSERT_THROW(a - b, MinusException);
 }

@@ -14,7 +14,11 @@ bool Number::equals(const Number& rhv) const
 
 bool Number::less(const Number& rhv) const
 {
-    if (data.size() >= rhv.data.size())
+    if (data.size() > rhv.data.size())
+    {
+        return false;
+    }
+    else if (data.size() == rhv.data.size())
     {
         bool msbExists = false;
         auto lMsbPos = mostSigBitPos(data.back(), msbExists);
@@ -75,7 +79,7 @@ bool operator <  (const Number& lhv, const Number& rhv)
 
 bool operator >  (const Number& lhv, const Number& rhv)
 {
-    return rhv< lhv;
+    return rhv < lhv;
 }
 
 bool operator <= (const Number& lhv, const Number& rhv)

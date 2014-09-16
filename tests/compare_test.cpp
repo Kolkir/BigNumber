@@ -59,6 +59,13 @@ TEST(CompareTests, Less)
     ASSERT_FALSE(a < b);
 
     ASSERT_TRUE(b < a);
+
+    a = Number::fromDecString("99999999999999");
+    b = Number::fromDecString("999999");
+
+    ASSERT_FALSE(a < b);
+
+    ASSERT_TRUE(b < a);
 }
 
 TEST(CompareTests,LessEqual)
