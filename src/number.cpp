@@ -15,6 +15,8 @@ Number::Number()
 
 Number Number::fromBinString(const std::string& str)
 {
+    validateBinString(str);
+
     auto msb = str.find_first_not_of('0');
 
     if (msb != std::string::npos)
@@ -66,30 +68,33 @@ void Number::clear()
 
 Number Number::fromDecString(const std::string& str)
 {
-    auto num= str;
-    std::string ret;
+    validateDecString(str);
+
+    auto num = str;
+    std::string retStr;
 
     while (num != "0")
     {
         if (isOdd(num.back()))
         {
-            ret += '1';
+            retStr += '1';
         }
         else
         {
-            ret += '0';
+            retStr += '0';
         }
         num = divByTwo(num);
     }
-    std::reverse(ret.begin(), ret.end());
+    std::reverse(retStr.begin(), retStr.end());
 
-    auto msb = ret.find_first_not_of('0');
+    auto msb = retStr.find_first_not_of('0');
     if (msb != std::string::npos)
     {
-        ret = ret.substr(msb);
+        retStr = retStr.substr(msb);
     }
 
-    return Number::fromBinString(ret);
+    auto ret = Number::fromBinString(retStr);
+    return ret;
 }
 
 }

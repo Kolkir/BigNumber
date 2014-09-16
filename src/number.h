@@ -10,6 +10,7 @@
 namespace bignumber
 {
 
+//unsigned unbounded integer
 class Number
 {
 public:
@@ -58,6 +59,7 @@ public:
 
     //arithmetics
     Number& operator += (const Number& rhv);
+    Number& operator -= (const Number& rhv);
 
 private:
     std::vector<DATA_TYPE> data;
@@ -78,5 +80,6 @@ bool operator >= (const Number& lhv, const Number& rhv);
 bool operator <= (const Number& lhv, const Number& rhv);
 
 Number operator + (const Number& lhv, const Number& rhv);
+Number operator - (const Number& lhv, const Number& rhv);
 }
 #endif

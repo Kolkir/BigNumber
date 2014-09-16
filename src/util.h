@@ -26,6 +26,9 @@ std::string addTwoDec(const std::string& a, const std::string& b);
 
 void GetLongestNumber(const Number** a, const Number** b);
 
+void validateBinString(const std::string& str);
+
+void validateDecString(const std::string& str);
 }
 
 #endif

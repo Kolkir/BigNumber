@@ -1,6 +1,6 @@
 #include "util.h"
-
 #include "number.h"
+#include "exception.h"
 
 #include <cstdlib>
 
@@ -206,6 +206,24 @@ void GetLongestNumber(const Number** a, const Number** b)
     else
     {
         std::swap((*a), (*b));
+    }
+}
+
+void validateBinString(const std::string& str)
+{
+    auto pos = str.find_first_not_of("01");
+    if (pos != std::string::npos)
+    {
+        throw ParseException(("String for binary Number representation has invalid characters : " + str).c_str());
+    }
+}
+
+void validateDecString(const std::string& str)
+{
+    auto pos = str.find_first_not_of("0123456789");
+    if (pos != std::string::npos)
+    {
+        throw ParseException(("String for decimal Number representation has invalid characters : " + str).c_str());
     }
 }
 

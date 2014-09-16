@@ -1,4 +1,5 @@
 #include "number.h"
+#include "exception.h"
 
 #include "util.h"
 
@@ -89,10 +90,30 @@ Number& Number::operator += (const Number& rhv)
 }
 
 
+Number& Number::operator -= (const Number& rhv)
+{
+    if (rhv > *this)
+    {
+        throw MinusException("Bigger Number can't be sbtracted from lesser Number");
+    }
+    else
+    {
+
+    }
+    return *this;
+}
+
 Number operator + (const Number& lhv, const Number& rhv)
 {
     Number ret(lhv);
     ret += rhv;
+    return ret;
+}
+
+Number operator - (const Number& lhv, const Number& rhv)
+{
+    Number ret(lhv);
+    ret -= rhv;
     return ret;
 }
 

@@ -1,8 +1,9 @@
 #include "number.h"
+#include "exception.h"
 
 #include <gtest/gtest.h>
 
-TEST(ArithmeticTests, Add)
+TEST(ArithmeticTests, Plus)
 {
     using namespace bignumber;
 
@@ -47,4 +48,27 @@ TEST(ArithmeticTests, Add)
     r = a + b;
 
     ASSERT_EQ("100000000000008", r.toDecString());
+}
+
+
+TEST(ArithmeticTests, Minus)
+{
+    using namespace bignumber;
+
+    auto a = Number::fromDecString("5");
+    auto b = Number::fromDecString("15");
+
+    ASSERT_THROW(a - b, MinusException);
+
+    a = Number::fromDecString("446779213458");
+    b = Number::fromDecString("60495262884570");
+
+    ASSERT_THROW(a - b, MinusException);
+
+    a = Number::fromDecString("10");
+    b = Number::fromDecString("5");
+
+    auto r = a - b;
+
+    ASSERT_EQ("5", r.toDecString());
 }

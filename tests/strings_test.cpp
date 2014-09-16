@@ -1,8 +1,35 @@
 #include "number.h"
+#include "exception.h"
 
 #include "util.h"
 
 #include <gtest/gtest.h>
+
+TEST(StringsTests, FromBinStringException)
+{
+    using namespace bignumber;
+
+    ASSERT_THROW(Number::fromBinString("-101"), ParseException);
+
+    ASSERT_THROW(Number::fromBinString("102"), ParseException);
+
+    ASSERT_THROW(Number::fromBinString("1 01"), ParseException);
+
+    ASSERT_THROW(Number::fromBinString(" 101"), ParseException);
+}
+
+TEST(StringsTests, FromDecStringException)
+{
+    using namespace bignumber;
+
+    ASSERT_THROW(Number::fromDecString("-101"), ParseException);
+
+    ASSERT_THROW(Number::fromDecString("1 01"), ParseException);
+
+    ASSERT_THROW(Number::fromDecString(" 101"), ParseException);
+
+    ASSERT_THROW(Number::fromDecString("0x101"), ParseException);
+}
 
 TEST(StringsTests, FromBinString)
 {
