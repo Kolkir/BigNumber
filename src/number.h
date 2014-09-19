@@ -67,6 +67,11 @@ public:
     Number& operator--();       // Prefix
     Number operator--(int);     // Postfix
 
+    //parity
+    bool isOdd() const;
+    bool isEven() const;
+
+
 private:
     std::vector<DATA_TYPE> data;
 };

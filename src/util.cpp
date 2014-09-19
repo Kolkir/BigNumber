@@ -73,7 +73,7 @@ std::string elemToBinString(DATA_TYPE x)
     return ret;
 }
 
-bool isOdd(char num)
+bool isOddNum(char num)
 {
     if (num == '1')
         return true;
@@ -106,7 +106,7 @@ std::string divByTwo(const std::string& num)
     for (auto ch : num)
     {
         auto add = next_add;
-        if (isOdd(ch))
+        if (isOddNum(ch))
         {
             next_add = 5;
         }

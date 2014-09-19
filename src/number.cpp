@@ -75,7 +75,7 @@ Number Number::fromDecString(const std::string& str)
 
     while (num != "0")
     {
-        if (isOdd(num.back()))
+        if (isOddNum(num.back()))
         {
             retStr += '1';
         }

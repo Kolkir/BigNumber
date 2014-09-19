@@ -18,7 +18,7 @@ void rightBitsWalk(DATA_TYPE x, std::function<void (bool)> func);
 
 std::string elemToBinString(DATA_TYPE x);
 
-bool isOdd(char num);
+bool isOddNum(char num);
 
 std::string divByTwo(const std::string& num);
 
