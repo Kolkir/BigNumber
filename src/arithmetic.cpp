@@ -15,7 +15,7 @@ Number& Number::operator += (const Number& rhv)
 
     auto aElem = res.data.begin();
 
-    if (data.back() != 0 && rhv.data.back() != 0)
+    if (data.back() != 0 || rhv.data.back() != 0)
     {
         //select bigest number
         const Number* a = this;
@@ -102,7 +102,7 @@ Number& Number::operator -= (const Number& rhv)
 
         auto aElem = res.data.begin();
 
-        if (data.back() != 0 && rhv.data.back() != 0)
+        if (data.back() != 0 || rhv.data.back() != 0)
         {
             //do Minus
             std::vector<DATA_TYPE> carries1(res.data.size());
@@ -161,6 +161,44 @@ Number& Number::operator -= (const Number& rhv)
         *this = res;
     }
     return *this;
+}
+
+Number Number::peasantMult(const Number& a, const Number& b)
+{
+    Number stopMarker = Number::fromBinString("1");
+
+    if (a == stopMarker)
+    {
+        return b;
+    }
+    else if (b == stopMarker)
+    {
+        return a;
+    }
+    else
+    {
+        Number ret;
+        Number lhv = a;
+        Number rhv = b;
+
+        if (b > a)
+        {
+            lhv = b;
+            rhv = a;
+        }
+
+        while (lhv.data.size() != 1 || lhv.data[0] != 0)
+        {
+            if (lhv.isOdd())
+            {
+                ret += rhv;
+            }
+            lhv >>= 1;
+            rhv <<= 1;
+        }
+        
+        return ret;
+    }
 }
 
 Number operator + (const Number& lhv, const Number& rhv)

@@ -60,6 +60,8 @@ public:
     //arithmetics
     Number& operator += (const Number& rhv);
     Number& operator -= (const Number& rhv);
+    static Number peasantMult(const Number& a, const Number& b);
+
 
     //increments
     Number& operator++();       // Prefix

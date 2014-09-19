@@ -99,3 +99,23 @@ TEST(ArithmeticTests, Minus)
 
     ASSERT_THROW(a - b, MinusException);
 }
+
+
+TEST(ArithmeticTests, PeasantMult)
+{
+    using namespace bignumber;
+
+    auto a = Number::fromDecString("5");
+    auto b = Number::fromDecString("15");
+
+    auto r = Number::peasantMult(a,b);
+
+    ASSERT_EQ("75", r.toDecString());
+
+    a = Number::fromDecString("45879");
+    b = Number::fromDecString("783");
+
+    r = Number::peasantMult(a,b);
+
+    ASSERT_EQ("35923257", r.toDecString());
+}
