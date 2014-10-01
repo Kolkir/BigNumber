@@ -60,8 +60,9 @@ public:
     //arithmetics
     Number& operator += (const Number& rhv);
     Number& operator -= (const Number& rhv);
+    Number& operator *= (const Number& rhv);
     static Number peasantMult(const Number& a, const Number& b);
-    static Number karatsubaMult(const Number& a, const Number& b);
+
 
 
     //increments
@@ -95,5 +96,6 @@ bool operator <= (const Number& lhv, const Number& rhv);
 
 Number operator + (const Number& lhv, const Number& rhv);
 Number operator - (const Number& lhv, const Number& rhv);
+Number operator * (const Number& lhv, const Number& rhv);
 }
 #endif

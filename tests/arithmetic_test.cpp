@@ -120,21 +120,21 @@ TEST(ArithmeticTests, PeasantMult)
     ASSERT_EQ("35923257", r.toDecString());
 }
 
-TEST(ArithmeticTests, KaratsubaMult)
+TEST(ArithmeticTests, Mult)
 {
     using namespace bignumber;
 
     auto a = Number::fromDecString("5");
     auto b = Number::fromDecString("15");
 
-    auto r = Number::karatsubaMult(a,b);
+    auto r = a *b;
 
     ASSERT_EQ("75", r.toDecString());
 
     a = Number::fromDecString("45879");
     b = Number::fromDecString("783");
 
-    r = Number::karatsubaMult(a,b);
+    a *= b;
 
-    ASSERT_EQ("35923257", r.toDecString());
+    ASSERT_EQ("35923257", a.toDecString());
 }
