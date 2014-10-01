@@ -61,9 +61,12 @@ public:
     Number& operator += (const Number& rhv);
     Number& operator -= (const Number& rhv);
     Number& operator *= (const Number& rhv);
+    Number& operator /= (const Number& rhv);
+    Number& operator %= (const Number& rhv);
+
+    //general algortims
     static Number peasantMult(const Number& a, const Number& b);
-
-
+    static std::pair<Number, Number> longDivison(const Number& a, const Number& b, bool mod = false);
 
     //increments
     Number& operator++();       // Prefix
@@ -97,5 +100,7 @@ bool operator <= (const Number& lhv, const Number& rhv);
 Number operator + (const Number& lhv, const Number& rhv);
 Number operator - (const Number& lhv, const Number& rhv);
 Number operator * (const Number& lhv, const Number& rhv);
+Number operator / (const Number& lhv, const Number& rhv);
+Number operator % (const Number& lhv, const Number& rhv);
 }
 #endif

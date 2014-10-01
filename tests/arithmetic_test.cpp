@@ -138,3 +138,61 @@ TEST(ArithmeticTests, Mult)
 
     ASSERT_EQ("35923257", a.toDecString());
 }
+
+TEST(ArithmeticTests, LongDivision)
+{
+    using namespace bignumber;
+
+    auto a = Number::fromDecString("5");
+    auto b = Number::fromDecString("15");
+
+    auto r = Number::longDivison(b, a);
+
+    ASSERT_EQ("3", r.first.toDecString());
+    ASSERT_EQ("0", r.second.toDecString());
+
+    r = Number::longDivison(a, b);
+
+    ASSERT_EQ("0", r.first.toDecString());
+    ASSERT_EQ("5", r.second.toDecString());
+
+    a = Number::fromDecString("45879");
+    b = Number::fromDecString("783");
+
+    r = Number::longDivison(a, b);
+
+    ASSERT_EQ("58", r.first.toDecString());
+    ASSERT_EQ("465", r.second.toDecString());
+
+    r = Number::longDivison(b, a);
+
+    ASSERT_EQ("0", r.first.toDecString());
+    ASSERT_EQ("783", r.second.toDecString());
+}
+
+TEST(ArithmeticTests, Division)
+{
+    using namespace bignumber;
+
+    auto a = Number::fromDecString("5");
+    auto b = Number::fromDecString("15");
+
+    auto r = b / a;
+
+    ASSERT_EQ("3", r.toDecString());
+
+    r = a / b;
+
+    ASSERT_EQ("0", r.toDecString());
+
+    a = Number::fromDecString("45879");
+    b = Number::fromDecString("783");
+
+    r = a / b;
+
+    ASSERT_EQ("58", r.toDecString());
+
+    r = a % b;
+
+    ASSERT_EQ("465", r.toDecString());
+}

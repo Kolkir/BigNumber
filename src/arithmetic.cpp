@@ -201,9 +201,57 @@ Number Number::peasantMult(const Number& a, const Number& b)
     }
 }
 
+std::pair<Number, Number> Number::longDivison(const Number& a, const Number& b, bool mod)
+{
+    std::pair<Number, Number> ret;
+
+    size_t bitIndex = a.data.size() * elem_bits_count - 1;
+    auto i = a.data.rbegin();
+    auto e = a.data.rend();
+    for (; i != e; ++i)
+    {
+        leftBitsWalk(*i,
+            [&](bool bit)
+        {
+            ret.second <<= 1;
+
+            if (bit)
+            {
+                ret.second.data.front() |= DATA_TYPE(1);
+            }
+
+            if (ret.second >= b)
+            {
+                ret.second -= b;
+                if (!mod)
+                {
+                    ret.first.setBit(bitIndex);
+                }
+            }
+            --bitIndex;
+        });
+    }
+
+    return ret;
+}
+
 Number& Number::operator *= (const Number& rhv)
 {
     *this = peasantMult(*this, rhv);
+    return *this;
+}
+
+Number& Number::operator /= (const Number& rhv)
+{
+    auto res = longDivison(*this, rhv);
+    *this = res.first;
+    return *this;
+}
+
+Number& Number::operator %= (const Number& rhv)
+{
+    auto res = longDivison(*this, rhv, true);
+    *this = res.second;
     return *this;
 }
 
@@ -225,6 +273,20 @@ Number operator * (const Number& lhv, const Number& rhv)
 {
     Number ret(lhv);
     ret *= rhv;
+    return ret;
+}
+
+Number operator / (const Number& lhv, const Number& rhv)
+{
+    Number ret(lhv);
+    ret /= rhv;
+    return ret;
+}
+
+Number operator % (const Number& lhv, const Number& rhv)
+{
+    Number ret(lhv);
+    ret %= rhv;
     return ret;
 }
 
