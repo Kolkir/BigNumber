@@ -5,6 +5,7 @@
 
 #include <string>
 #include <functional>
+#include <vector>
 
 namespace bignumber
 {
@@ -29,6 +30,31 @@ void GetLongestNumber(const Number** a, const Number** b);
 void validateBinString(const std::string& str);
 
 void validateDecString(const std::string& str);
+
+template<class VecType, class Type>
+void fillVectorWithType(std::vector<VecType>& vec, Type data)
+{
+    size_t bitsNumVec = sizeof(VecType) * 8 - 1;
+    size_t bitsNumData = sizeof(Type) * 8;
+
+    auto includes = bitsNumData / bitsNumVec + 1;
+    vec.resize(includes);
+
+    VecType clearLastBitMask = ~(VecType(1) << bitsNumVec);
+    for (size_t i = 0; i < includes; ++i)
+    {
+        VecType elem = static_cast<VecType>(data);
+        elem &= clearLastBitMask;
+        vec[i] = elem;
+        data >>= bitsNumVec;
+    }
+
+    while (vec.back() == 0)
+    {
+        vec.erase(std::prev(vec.end()));
+    }
+}
+
 }
 
 #endif

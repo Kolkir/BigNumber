@@ -13,6 +13,31 @@ Number::Number()
     static_assert(std::is_unsigned<DATA_TYPE>::value && std::is_integral<DATA_TYPE>::value, "Wrond data type");
 }
 
+Number::Number(unsigned char num)
+{
+    fillVectorWithType(data, num);
+}
+
+Number::Number(unsigned short num)
+{
+    fillVectorWithType(data, num);
+}
+
+Number::Number(unsigned int num)
+{
+    fillVectorWithType(data, num);
+}
+
+Number::Number(unsigned long num)
+{
+    fillVectorWithType(data, num);
+}
+
+Number::Number(unsigned long long num)
+{
+    fillVectorWithType(data, num);
+}
+
 Number Number::fromBinString(const std::string& str)
 {
     validateBinString(str);

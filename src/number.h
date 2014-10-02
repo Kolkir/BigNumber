@@ -24,6 +24,16 @@ public:
     //construction
     Number();
 
+    explicit Number(unsigned char num);
+
+    explicit Number(unsigned short num);
+
+    explicit Number(unsigned int num);
+
+    explicit Number(unsigned long num);
+
+    explicit Number(unsigned long long num);
+
     static Number fromBinString(const std::string& str);
 
     static Number fromDecString(const std::string& str);
